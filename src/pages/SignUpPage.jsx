@@ -3,6 +3,8 @@ import { ShoppingBag, Mail, Lock, User } from 'lucide-react';
 import { useFlash } from '../context/FlashContext';
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_BACKEND_URI || "http://127.0.0.1:5000";
+
 const SignUpPage = () => {
   const { setFlashMessage } = useFlash();
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ const SignUpPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/signup", {
+      const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

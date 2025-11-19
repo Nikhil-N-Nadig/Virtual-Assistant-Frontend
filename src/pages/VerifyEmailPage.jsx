@@ -6,7 +6,11 @@ import { useFlash } from "../context/FlashContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
+const API_URL = import.meta.env.VITE_BACKEND_URI || "http://127.0.0.1:5000";
+
+
 const VerifyOtpPage = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setFlashMessage } = useFlash();
@@ -74,7 +78,7 @@ const VerifyOtpPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/verify-otp", {
+      const response = await fetch(`${API_URL}/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail, otp: otpValue }),
@@ -100,7 +104,7 @@ const VerifyOtpPage = () => {
     setResending(true);
     setResendStatus("Resending OTP...");
     try {
-      const response = await fetch("http://localhost:5000/resend-otp", {
+      const response = await fetch(`${API_URL}/resend-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail }),

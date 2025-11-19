@@ -4,7 +4,7 @@ import { Mail, KeyRound, Lock, Loader2, CheckCircle } from "lucide-react";
 import { useFlash } from "../context/FlashContext";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_BACKEND_URI || "http://127.0.0.1:5000";
 
 const ForgotPasswordFlow = () => {
   const { setFlashMessage } = useFlash();

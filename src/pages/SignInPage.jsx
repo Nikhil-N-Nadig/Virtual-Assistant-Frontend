@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+const API_URL = import.meta.env.VITE_BACKEND_URI || "http://127.0.0.1:5000";
 
 const SignInPage = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const SignInPage = () => {
       setLoading(true);
 
       const response = await axios.post(
-        'http://localhost:5000/signin',
+        `'${API_URL}/signin`,
         formData,
         { withCredentials: true }
       );
